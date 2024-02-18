@@ -1,0 +1,38 @@
+#!/bin/bash 
+
+# This program will create a new github repo online
+#using my API key. 
+
+#all git hub scripts are stored in the  ~/scripts dir 
+#and will get it's argumets from the command line
+#You will need to install curl on your system to run this program
+#
+#arguments from running program
+filename="$1"
+loop=1
+scripts_dir="/home/jim/scripts/*"
+
+while [ $loop -eq 1 ]; do
+	echo $filename
+	if   [[ ! -d $file_name ]]  && [[ $PWD = $scripts_dir ]]  ; then 
+		echo "ok"
+		#echo "this is ok, we are in the right folder with no file of that name"
+		#read file with api tag and asign to value
+		apikey=$(cat /home/jim/scripts/.apikey.txt)
+	
+		#create file or dir and file
+	
+		curl -u "grunclejim:$apikey" https://api.github.com/user/repos -d '{"name":"'$filename'"}'
+		# if the repo has been created sucsessfully the file will be created
+		#else an error will print
+		if [ $? = 0 ] ; then 
+			echo "File and GitHub Repo created."
+			mkdir $filename
+			loop=0
+		else 
+			echo "ERROR repo not created : $?."
+			exit
+		fi
+	fi
+done	 
+#end of program

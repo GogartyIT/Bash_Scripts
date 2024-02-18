@@ -1,0 +1,41 @@
+#!/bin/bash
+#Git Commit Program
+#Author : Jim Gogarty
+#Version : 1.0
+#website : NONE AS YET
+#Report Bugs to github page.
+#
+#This program will run the git commit and push  comands for the user
+#Users will have to enter username and password at final stage
+#
+#if you would like to have this program as a ready to run program
+#enter the following command
+#
+#export PATH=$PATH:/path/to/dir
+#where "/path/to/dir is where you have located this script
+#You could also add this line to the bottom of your .profile file in your user dir
+
+#VARIABLES
+
+MESSAGE="$1"
+BRANCH="$2"
+#FUNCTIONS
+#git commit and push commands
+function gitpush ()
+{	
+	#add error checking i.e. if the user dosr not entet 2 varibles. 
+	echo "adding changes to git."
+	git add .
+	echo "Commiting changes to github."
+	git commit -m "$MESSAGE"
+	echo "Pushing changes to Github repo."
+	git push -u origin "$BRANCH"
+	echo  " Changes commited to Github."
+	read -p "Press any key to exit."
+}
+
+#check dir 
+
+#MAIN
+clear
+gitpush		
